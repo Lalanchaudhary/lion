@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indu Digital | Digital Marketing Agency</title>
+  <style>
+    :root {
+      --ink: #171717;
+      --muted: #5f6368;
+      --paper: #fffaf2;
+      --white: #ffffff;
+      --coral: #ff5a4f;
+      --green: #186a5e;
+      --gold: #f5b84b;
+      --line: rgba(23, 23, 23, 0.12);
+      --shadow: 0 22px 70px rgba(31, 35, 41, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px clamp(18px, 5vw, 56px);
+      background: rgba(255, 250, 242, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      color: var(--white);
+      background: var(--green);
+      border-radius: 8px;
+    }
+
+    .nav {
+      display: none;
+      align-items: center;
+      gap: 24px;
+      color: #3c4043;
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .cta-link,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-weight: 780;
+      white-space: nowrap;
+    }
+
+    .cta-link,
+    .button.primary {
+      color: var(--white);
+      background: var(--coral);
+      box-shadow: 0 12px 26px rgba(255, 90, 79, 0.25);
+    }
+
+    .button.secondary {
+      color: var(--green);
+      background: var(--white);
+      border-color: rgba(24, 106, 94, 0.22);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      isolation: isolate;
+      background: #101010;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url("indu.png") center top / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.28) 38%, rgba(0, 0, 0, 0.78) 100%);
+    }
+
+    .hero-inner {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+      padding: 112px 0 34px;
+    }
+
+    .hero-content {
+      color: var(--white);
+      max-width: 680px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      color: #ffe2a3;
+      font-size: 0.82rem;
+      font-weight: 820;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 3px;
+      background: var(--gold);
+      border-radius: 999px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 16px;
+      font-size: clamp(2.45rem, 11vw, 5.9rem);
+      line-height: 0.94;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 610px;
+      margin-bottom: 24px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(1rem, 4.2vw, 1.25rem);
+      line-height: 1.55;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 520px;
+    }
+
+    .stat {
+      padding: 12px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.22rem;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.74rem;
+      line-height: 1.25;
+    }
+
+    main {
+      background: var(--paper);
+    }
+
+    section {
+      padding: 72px clamp(18px, 5vw, 56px);
+    }
+
+    .section-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .section-kicker {
+      color: var(--coral);
+      font-size: 0.78rem;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      max-width: 760px;
+      margin-bottom: 0;
+      font-size: clamp(2rem, 6vw, 3.65rem);
+      line-height: 1.02;
+    }
+
+    .section-heading p,
+    .wide-copy {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .service-card,
+    .work-card,
+    .contact-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 12px 34px rgba(31, 35, 41, 0.06);
+    }
+
+    .service-card {
+      padding: 24px;
+    }
+
+    .service-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 18px;
+      color: var(--white);
+      background: var(--green);
+      border-radius: 8px;
+      font-weight: 900;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .service-card p,
+    .work-card p,
+    .contact-panel p {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .strategy {
+      background: var(--white);
+    }
+
+    .strategy-layout {
+      display: grid;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .strategy-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 28px 0 0;
+      list-style: none;
+    }
+
+    .strategy-list li {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: #3d4146;
+      line-height: 1.55;
+    }
+
+    .check {
+      display: grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      color: var(--white);
+      background: var(--coral);
+      border-radius: 50%;
+      font-weight: 900;
+    }
+
+    .image-panel {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .work-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .work-card {
+      overflow: hidden;
+    }
+
+    .work-band {
+      min-height: 120px;
+      background:
+        linear-gradient(135deg, rgba(255, 90, 79, 0.92), rgba(245, 184, 75, 0.9)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.22) 0 8px, transparent 8px 18px);
+    }
+
+    .work-card:nth-child(2) .work-band {
+      background:
+        linear-gradient(135deg, rgba(24, 106, 94, 0.94), rgba(45, 158, 138, 0.82)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.2) 0 8px, transparent 8px 18px);
+    }
+
+    .work-card:nth-child(3) .work-band {
+      background:
+        linear-gradient(135deg, rgba(23, 23, 23, 0.92), rgba(255, 90, 79, 0.86)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 8px, transparent 8px 18px);
+    }
+
+    .work-body {
+      padding: 22px;
+    }
+
+    .contact {
+      background: #132f2b;
+      color: var(--white);
+    }
+
+    .contact-panel {
+      display: grid;
+      gap: 24px;
+      padding: clamp(24px, 5vw, 44px);
+      color: var(--ink);
+      background: var(--white);
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+      color: var(--green);
+      font-weight: 780;
+    }
+
+    footer {
+      padding: 24px clamp(18px, 5vw, 56px);
+      color: rgba(255, 255, 255, 0.72);
+      background: #132f2b;
+      font-size: 0.92rem;
+    }
+
+    .footer-inner {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 760px) {
+      .nav {
+        display: flex;
+      }
+
+      .hero {
+        align-items: center;
+        background: var(--paper);
+      }
+
+      .hero::before,
+      .hero::after {
+        display: none;
+      }
+
+      .hero-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+        gap: clamp(32px, 7vw, 78px);
+        align-items: center;
+        padding: 124px 0 58px;
+      }
+
+      .hero-content {
+        color: var(--ink);
+      }
+
+      .eyebrow {
+        color: var(--green);
+      }
+
+      .hero-copy {
+        color: var(--muted);
+      }
+
+      .hero-visual {
+        min-height: 680px;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-visual img {
+        width: 100%;
+        height: 100%;
+        min-height: 680px;
+        object-fit: cover;
+        object-position: center top;
+      }
+
+      .stat {
+        border-color: var(--line);
+        background: var(--white);
+        backdrop-filter: none;
+      }
+
+      .stat span {
+        color: var(--muted);
+      }
+
+      .services-grid,
+      .work-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .strategy-layout {
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+
+      .contact-panel {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 759px) {
+      .site-header {
+        background: rgba(16, 16, 16, 0.42);
+        color: var(--white);
+      }
+
+      .brand-mark {
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+      }
+
+      .cta-link {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 0.86rem;
+      }
+
+      .hero {
+        min-height: auto;
+        align-items: start;
+        background: var(--paper);
+      }
+
+      .hero::before,
+      .hero::after {
+        display: none;
+      }
+
+      .hero-visual {
+        display: block;
+        order: -1;
+        width: 100%;
+        overflow: hidden;
+        background: #101010;
+      }
+
+      .hero-visual img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        object-position: center top;
+      }
+
+      .hero-inner {
+        width: 100%;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 70px 0 0;
+      }
+
+      .hero-content {
+        width: min(100% - 36px, 680px);
+        margin: 0 auto;
+        padding: 28px 0 34px;
+        color: var(--ink);
+      }
+
+      .eyebrow {
+        color: var(--green);
+      }
+
+      .hero-copy {
+        color: var(--muted);
+      }
+
+      .button {
+        flex: 1 1 150px;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stat {
+        border-color: var(--line);
+        background: var(--white);
+        backdrop-filter: none;
+      }
+
+      .stat span {
+        color: var(--muted);
+      }
+
+      section {
+        padding-top: 58px;
+        padding-bottom: 58px;
+      }
+
+      .image-panel,
+      .image-panel img {
+        min-height: 430px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Indu Digital home">
+      <span class="brand-mark">I</span>
+      <span>Indu Digital</span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#services">Services</a>
+      <a href="#strategy">Strategy</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="cta-link" href="#contact">Start Growth</a>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="eyebrow">Digital marketing agency</p>
+        <h1>Indu Digital</h1>
+        <p class="hero-copy">We help brands get seen, remembered, and chosen with performance ads, social content, SEO, and conversion-focused campaigns.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#contact">Book a Strategy Call</a>
+          <a class="button secondary" href="#services">View Services</a>
+        </div>
+        <div class="hero-stats" aria-label="Agency highlights">
+          <div class="stat">
+            <strong>3x</strong>
+            <span>better campaign focus</span>
+          </div>
+          <div class="stat">
+            <strong>24/7</strong>
+            <span>brand visibility</span>
+          </div>
+          <div class="stat">
+            <strong>360</strong>
+            <span>digital growth plan</span>
+          </div>
+        </div>
+      </div>
+      <a class="hero-visual" href="https://wa.me/917461800842" aria-label="Chat with Indu Digital on WhatsApp">
+        <img src="indu.png" alt="">
+      </a>
+    </div>
+  </section>
+
+  <main>
+    <section id="services">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="section-kicker">What we do</span>
+          <h2>Marketing systems that turn attention into customers.</h2>
+          <p>Indu Digital builds practical growth engines for local businesses, creators, startups, and service brands that need stronger reach and cleaner results.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">A</div>
+            <h3>Performance Ads</h3>
+            <p>Google, Meta, and YouTube campaigns planned around the right audience, sharp creatives, and measurable return.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">S</div>
+            <h3>Social Media</h3>
+            <p>Content calendars, reels, captions, and campaign ideas that keep your brand active, consistent, and recognizable.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">G</div>
+            <h3>SEO & Growth</h3>
+            <p>Search-friendly pages, local visibility, analytics, and conversion improvements that compound over time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="strategy" id="strategy">
+      <div class="section-inner strategy-layout">
+        <div>
+          <span class="section-kicker">Our approach</span>
+          <h2>Clear strategy, bold creative, steady execution.</h2>
+          <p class="wide-copy">We pair brand storytelling with data-led decisions, so every post, ad, and landing page has a job to do.</p>
+          <ul class="strategy-list">
+            <li><span class="check">✓</span><span>Audit your current digital presence and find the fastest growth opportunities.</span></li>
+            <li><span class="check">✓</span><span>Create campaigns with strong offers, clean visuals, and audience-specific messaging.</span></li>
+            <li><span class="check">✓</span><span>Track performance every month and improve the channels that bring real leads.</span></li>
+          </ul>
+        </div>
+        <div class="image-panel">
+          <img src="indu.png" alt="Indu Digital campaign visual">
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="section-kicker">Growth packages</span>
+          <h2>Choose the support your brand needs right now.</h2>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <div class="work-band"></div>
+            <div class="work-body">
+              <h3>Launch</h3>
+              <p>Brand setup, starter content, basic SEO, and social pages ready for the first wave of customers.</p>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-band"></div>
+            <div class="work-body">
+              <h3>Scale</h3>
+              <p>Monthly content, ads management, landing page improvements, and weekly performance checks.</p>
+            </div>
+          </article>
+          <article class="work-card">
+            <div class="work-band"></div>
+            <div class="work-body">
+              <h3>Dominate</h3>
+              <p>Full-funnel campaigns, advanced analytics, remarketing, SEO growth, and creative testing.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="section-inner">
+        <div class="contact-panel">
+          <div>
+            <span class="section-kicker">Let's grow</span>
+            <h2>Ready to make your brand easier to find and harder to ignore?</h2>
+            <p>Tell us what you sell, who you serve, and where you want to grow. Indu Digital will map the next campaign.</p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:hello@indudigital.com">hello@indudigital.com</a>
+            <a href="tel:+917461800842">+91 74618 00842</a>
+            <a href="https://wa.me/917461800842">Chat on WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Indu Digital. All rights reserved.</span>
+      <span>Social • Search • Ads • Growth</span>
+    </div>
+  </footer>
+</body>
+</html>
