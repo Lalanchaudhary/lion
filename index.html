@@ -610,6 +610,23 @@
 
   gtag('config', 'AW-18172740097');
 </script>
+<!-- Event snippet for Outbound click conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18172740097/xA2UCKuLt68cEIGEuNlD',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
 </head>
 <body>
   <header class="site-header">
@@ -651,7 +668,7 @@
           </div>
         </div>
       </div>
-      <a class="hero-visual" href="https://wa.me/917909042424?text=i%20want%20know%20more.." aria-label="Chat with Indumati on WhatsApp">
+      <a class="hero-visual" href="https://wa.me/917909042424?text=i%20want%20know%20more.." onclick="return gtag_report_conversion(this.href)" aria-label="Chat with Indumati on WhatsApp">
         <img src="indu.png" alt="">
       </a>
     </div>
@@ -746,7 +763,7 @@
           <div class="contact-links">
             <a href="mailto:hello@indumati.com">hello@indumati.com</a>
             <a href="tel:+917909042424">+91 74618 00842</a>
-            <a href="https://wa.me/917909042424?text=i%20want%20know%20more..">Chat on WhatsApp</a>
+            <a href="https://wa.me/917909042424?text=i%20want%20know%20more.." onclick="return gtag_report_conversion(this.href)">Chat on WhatsApp</a>
           </div>
         </div>
       </div>
